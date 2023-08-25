@@ -1,18 +1,17 @@
-# configuration for the github actions
 ---
 name: Checks
 
 on: [push]
 
 jobs:
-  test-ling:
+  test-lint:
     name: Test and Lint
     runs-on: ubuntu-20.04
     steps:
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USER }} # Here are the variables that we set in the repository settings
+          username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v3
