@@ -5,21 +5,19 @@ name: Checks
 on: [push]
 
 jobs:
-  test-ling:
-   name: Test and Lint
-   runs-on: ubuntu-20.04
-
-    steps:
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-        # Here are the variables that we set in the repository settings         
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Test
-        run: docker-compose run --rm app sh -c "python manage.py test"
-      - name: Lint  
-        run: docker-compose run --rm app sh -c "flake8"
-        
+    test-ling:
+        name: Test and Lint
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Login to Docker Hub
+              uses: docker/login-action@v1
+              with:
+                  # Here are the variables that we set in the repository settings
+                  username: ${{ secrets.DOCKER_USER }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Test
+              run: docker-compose run --rm app sh -c "python manage.py test"
+            - name: Lint
+              run: docker-compose run --rm app sh -c "flake8"
